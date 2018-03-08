@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebApp.Models
@@ -64,6 +65,20 @@ namespace WebApp.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Imię")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Data urodzenia")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? DateOfBirth { get; set; }
+
+        [Required]
+        [Display(Name = "Miejsce zamieszkania")]
+        public string City { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

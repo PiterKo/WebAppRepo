@@ -16,13 +16,16 @@ namespace WebApp.Models
         [Display(Name = "Imię")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Miejsce zamieszkania")]
-        public string City { get; set; }
-
         [Display(Name = "Data urodzenia")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DateOfBirth { get; set; }
+
+        [Display(Name = "Miejsce zamieszkania")]
+        public string City { get; set; }
+
+        // Set relation one-to-zero-or-one
+        public virtual AdModel AdModel { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
