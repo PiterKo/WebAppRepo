@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace WebApp.Models
+namespace Repo.Models
 {
     public class AdModel
     {

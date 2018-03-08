@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApp.Models
+namespace Repo.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
