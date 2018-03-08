@@ -194,6 +194,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdModel.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\WebAppContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
