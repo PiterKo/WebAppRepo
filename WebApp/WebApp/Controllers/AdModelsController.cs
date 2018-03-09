@@ -15,30 +15,10 @@ namespace WebApp.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: AdModels
-        public ActionResult Index()
-        {
-            return View(db.Ads.ToList());
-        }
-
-        // GET: AdModels/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AdModel adModel = db.Ads.Find(id);
-            if (adModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(adModel);
-        }
 
         // GET: AdModels/Create
         [Authorize]
-        public ActionResult Create()
+        public ActionResult Index()
         {
             ApplicationUser applicationUser = db.ApplicationUsers.Find(User.Identity.GetUserId());
             using (db)
@@ -60,7 +40,7 @@ namespace WebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "Type,ImagePath,Area,ShortDescription,Skills,Links")] AdModel adModel)
+        public ActionResult Index([Bind(Include = "Type,ImagePath,Area,ShortDescription,Skills,Links")] AdModel adModel)
         {
             ApplicationUser applicationUser = db.ApplicationUsers.Find(User.Identity.GetUserId());
             adModel.ApplicationUser = applicationUser;
@@ -69,67 +49,10 @@ namespace WebApp.Controllers
             {
                 db.Ads.Add(adModel);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(adModel);
-        }
-
-        // GET: AdModels/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AdModel adModel = db.Ads.Find(id);
-            if (adModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(adModel);
-        }
-
-        // POST: AdModels/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Active,Type,ImagePath,Area,ShortDescription,Skills,Links,AddingDate")] AdModel adModel)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(adModel).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(adModel);
-        }
-
-        // GET: AdModels/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AdModel adModel = db.Ads.Find(id);
-            if (adModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(adModel);
-        }
-
-        // POST: AdModels/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            AdModel adModel = db.Ads.Find(id);
-            db.Ads.Remove(adModel);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

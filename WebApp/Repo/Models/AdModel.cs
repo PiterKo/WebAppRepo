@@ -18,6 +18,8 @@ namespace Repo.Models
         [Display(Name = "Typ ogłoszenia")]
         public string Type { get; set; }
 
+        // Trzeba dodać kategorie ogłoszeń !!!
+
         [Display(Name = "Path")]
         public string ImagePath { get; set; }
 

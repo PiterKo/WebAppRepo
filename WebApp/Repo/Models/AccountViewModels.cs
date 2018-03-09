@@ -71,8 +71,6 @@ namespace Repo.Models
 
         [Required]
         [Display(Name = "Data urodzenia")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DateOfBirth { get; set; }
 
         [Required]
