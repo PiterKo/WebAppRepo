@@ -19,7 +19,7 @@ namespace Repo.Migrations
                         ShortDescription = c.String(nullable: false, maxLength: 256),
                         Skills = c.String(nullable: false),
                         Links = c.String(),
-                        AddingDate = c.DateTime(nullable: false),
+                        AddingDate = c.DateTime(),
                         ApplicationUser_Id = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)

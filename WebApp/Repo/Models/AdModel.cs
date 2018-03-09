@@ -40,7 +40,7 @@ namespace Repo.Models
         [Display(Name = "Data dodania")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime AddingDate { get; set; } = DateTime.Now; // Default set is current date.
+        public DateTime? AddingDate { get; set; } = DateTime.Now; // Default set is current date.
 
         // Set relation one-to-zero-or-one
         public virtual ApplicationUser ApplicationUser { get; set; }
