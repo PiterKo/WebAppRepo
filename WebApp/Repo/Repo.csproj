@@ -115,16 +115,30 @@
     <Compile Include="Migrations\201803091756054_1.Designer.cs">
       <DependentUpon>201803091756054_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803102139080_2.cs" />
+    <Compile Include="Migrations\201803102139080_2.Designer.cs">
+      <DependentUpon>201803102139080_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803102242314_3.cs" />
+    <Compile Include="Migrations\201803102242314_3.Designer.cs">
+      <DependentUpon>201803102242314_3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdModel.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\WebAppContext.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803091756054_1.resx">
       <DependentUpon>201803091756054_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803102139080_2.resx">
+      <DependentUpon>201803102139080_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803102242314_3.resx">
+      <DependentUpon>201803102242314_3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

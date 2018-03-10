@@ -17,7 +17,7 @@ namespace WebApp.Controllers
 
 
         // GET: AdModels/Create
-        [Authorize]
+        
         public ActionResult Index()
         {
             ApplicationUser applicationUser = db.ApplicationUsers.Find(User.Identity.GetUserId());
@@ -40,7 +40,7 @@ namespace WebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Index([Bind(Include = "Type,ImagePath,Area,ShortDescription,Skills,Links")] AdModel adModel)
+        public ActionResult Index([Bind(Include = "Type, Category, ImagePath,Area,ShortDescription,Skills,Links")] AdModel adModel)
         {
             ApplicationUser applicationUser = db.ApplicationUsers.Find(User.Identity.GetUserId());
             adModel.ApplicationUser = applicationUser;

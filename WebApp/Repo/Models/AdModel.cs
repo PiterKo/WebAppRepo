@@ -16,9 +16,11 @@ namespace Repo.Models
 
         [Required]
         [Display(Name = "Typ ogłoszenia")]
-        public string Type { get; set; }
+        public AdType Type { get; set; }
 
-        // Trzeba dodać kategorie ogłoszeń !!!
+        [Required]
+        [Display(Name = "Kategoria")]
+        public AdCategory Category { get; set; }
 
         [Display(Name = "Path")]
         public string ImagePath { get; set; }
@@ -46,5 +48,21 @@ namespace Repo.Models
 
         // Set relation one-to-zero-or-one
         public virtual ApplicationUser ApplicationUser { get; set; }
+    }
+
+    public enum AdType
+    {
+        Praca,
+        Zlecenie
+    }
+
+    public enum AdCategory
+    {
+        Budownictwo,
+        IT,
+        Transport,
+        Hotelarstwo,
+        HR,
+        Gastronomia,
     }
 }
