@@ -71,7 +71,7 @@ namespace Repo.Models
 
         [Required]
         [Display(Name = "Data urodzenia")]
-        public DateTime? DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         [Required]
         [Display(Name = "Miejsce zamieszkania")]

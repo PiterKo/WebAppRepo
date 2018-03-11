@@ -17,15 +17,16 @@ namespace WebApp.Controllers
 
 
         // GET: AdModels/Create
-        
+        [Authorize]
         public ActionResult Index()
         {
             ApplicationUser applicationUser = db.ApplicationUsers.Find(User.Identity.GetUserId());
             using (db)
             {
                 var query = db.Ads
-                                   .Where(s => s.ApplicationUser.Id == applicationUser.Id )
-                                   .FirstOrDefault<AdModel>();
+                    .Where(s => s.ApplicationUser.Id == applicationUser.Id )
+                    .FirstOrDefault<AdModel>();
+
                 if(query != null)
                 {
                     return RedirectToAction("Index", "Home");

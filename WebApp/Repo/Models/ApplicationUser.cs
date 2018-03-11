@@ -19,7 +19,7 @@ namespace Repo.Models
         [Display(Name = "Data urodzenia")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         [Display(Name = "Miejsce zamieszkania")]
         public string City { get; set; }
