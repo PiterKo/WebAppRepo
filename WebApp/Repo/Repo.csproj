@@ -111,6 +111,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepo\IAdsRepos.cs" />
     <Compile Include="Migrations\201803111925200_1.cs" />
     <Compile Include="Migrations\201803111925200_1.Designer.cs">
       <DependentUpon>201803111925200_1.cs</DependentUpon>

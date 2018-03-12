@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Repo.IRepo;
 using Repo.Models;
 using Repo.Repos;
 
@@ -14,12 +15,17 @@ namespace WebApp.Controllers
 {
     public class AdsModelsController : Controller
     {
-        AdRepos ad = new AdRepos();
+        private readonly IAdsRepos _repos;
 
-        // GET: AdModels
+        public AdsModelsController(IAdsRepos repos)
+        {
+            _repos = repos;
+        }
+
+        // GET: Ads
         public ActionResult Index()
         {
-            var adModels = ad.GetAds();
+            var adModels = _repos.GetAds();
             return View(adModels.ToList());
         }
     }
