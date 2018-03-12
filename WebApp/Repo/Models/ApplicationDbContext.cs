@@ -4,10 +4,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Repo.IRepo;
 
 namespace Repo.Models
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext, IApplicationContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection")

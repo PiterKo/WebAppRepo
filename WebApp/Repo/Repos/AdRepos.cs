@@ -9,11 +9,16 @@ namespace Repo.Repos
 {
     public class AdRepos : IAdsRepos
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IApplicationContext _db;
+
+        public AdRepos(IApplicationContext db)
+        {
+            _db = db;
+        }
 
         public IQueryable<AdModel> GetAds()
         {
-            return db.Ads.AsNoTracking();
+            return _db.Ads.AsNoTracking();
         }
     }
 }

@@ -1,4 +1,5 @@
 using Repo.IRepo;
+using Repo.Models;
 using Repo.Repos;
 using System;
 
@@ -51,6 +52,7 @@ namespace WebApp
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
             container.RegisterType<IAdsRepos, AdRepos>(new PerRequestLifetimeManager());
+            container.RegisterType<IApplicationContext, ApplicationDbContext>(new PerRequestLifetimeManager());
         }
     }
 }
