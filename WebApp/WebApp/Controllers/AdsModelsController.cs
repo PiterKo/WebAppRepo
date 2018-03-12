@@ -8,17 +8,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Repo.Models;
+using Repo.Repos;
 
 namespace WebApp.Controllers
 {
     public class AdsModelsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        AdRepos ad = new AdRepos();
 
         // GET: AdModels
         public ActionResult Index()
         {
-            var adModels = db.Ads.AsNoTracking();
+            var adModels = ad.GetAds();
             return View(adModels.ToList());
         }
     }
