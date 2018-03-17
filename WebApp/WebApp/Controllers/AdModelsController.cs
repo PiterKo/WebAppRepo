@@ -7,32 +7,33 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Repo.IRepo;
 using Repo.Models;
+using Repo.Models.Partial;
 
 namespace WebApp.Controllers
 {
     public class AdModelsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IAdsRepos _repos;
 
+        public AdModelsController(IAdsRepos repos)
+        {
+            _repos = repos;
+        }
 
         // GET: AdModels/Create
         [Authorize]
         public ActionResult Index()
         {
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(User.Identity.GetUserId());
-            using (db)
+            if (_repos.GetAdByUser(User.Identity.GetUserId()) != null)
             {
-                var query = db.Ads
-                    .Where(s => s.ApplicationUser.Id == applicationUser.Id )
-                    .FirstOrDefault<AdModel>();
-
-                if(query != null)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+                return RedirectToAction("Index", "Home");
             }
-            return View();
+
+            var dropDown = _repos.GetTypes();
+
+            return View(dropDown);
         }
 
         // POST: AdModels/Create
@@ -41,28 +42,17 @@ namespace WebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Index([Bind(Include = "Type, Category, ImagePath,Area,ShortDescription,Skills,Links")] AdModel adModel)
+        public ActionResult Index([Bind(Include = "ImagePath,Area,ShortDescription,Skills,AdTypes")] AdModel adModel)
         {
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(User.Identity.GetUserId());
-            adModel.ApplicationUser = applicationUser;
+            adModel = _repos.AdModel(adModel, User.Identity.GetUserId());
 
             if (ModelState.IsValid)
             {
-                db.Ads.Add(adModel);
-                db.SaveChanges();
+                _repos.CreateAd(adModel);
                 return RedirectToAction("Index", "Home");
             }
 
             return View(adModel);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

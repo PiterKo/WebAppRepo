@@ -1,4 +1,5 @@
 ﻿using Repo.Models;
+using Repo.Models.Partial;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,10 @@ namespace Repo.IRepo
 {
     public interface IAdsRepos
     {
-        IQueryable<AdModel> GetAds();
+        List<AdModel> GetAds();
+        AdModel GetTypes();
+        AdModel GetAdByUser(string userId);
+        AdModel AdModel(AdModel adModel, string userId);
+        void CreateAd(AdModel adModel);
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Repo.IRepo;
+using Repo.Models.Partial;
 
 namespace Repo.Models
 {
@@ -22,6 +23,7 @@ namespace Repo.Models
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<AdModel> Ads { get; set; }
+        public DbSet<AdType> AdTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,6 +39,10 @@ namespace Repo.Models
             modelBuilder.Entity<ApplicationUser>()
                 .HasOptional(s => s.AdModel) 
                 .WithRequired(ad => ad.ApplicationUser);
+
+            modelBuilder.Entity<AdModel>()
+                .HasRequired<AdType>(s => s.AdTypes)
+                .WithMany(g => g.AdModels);
         }
     }
 }

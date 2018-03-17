@@ -1,4 +1,5 @@
 ﻿using Repo.Models;
+using Repo.Models.Partial;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,8 +12,9 @@ namespace Repo.IRepo
     {
         DbSet<ApplicationUser> ApplicationUsers { get; set; }
         DbSet<AdModel> Ads { get; set; }
+        DbSet<AdType> AdTypes { get; set; }
 
-        // int SaveChages();
-       Database Database { get; }
+        int SaveChanges();
+        Database Database { get; }
     }
 }

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Repo.Models.Partial;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,14 +15,6 @@ namespace Repo.Models
 
         [Display(Name = "Status")]
         public bool Active { get; set; } = true; // Default set is true.
-
-        [Required]
-        [Display(Name = "Typ ogłoszenia")]
-        public AdType Type { get; set; }
-
-        [Required]
-        [Display(Name = "Kategoria")]
-        public AdCategory Category { get; set; }
 
         [Display(Name = "Path")]
         public string ImagePath { get; set; }
@@ -38,31 +32,17 @@ namespace Repo.Models
         [Display(Name = "Umiejętności")]
         public string Skills { get; set; }
 
-        [Display(Name = "Linki")]
-        public string Links { get; set; }
-
         [Display(Name = "Data dodania")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? AddingDate { get; set; } = DateTime.Now; // Default set is current date.
 
+        //First property  Name: Type, Relation: one-to-many
+        public virtual AdType AdTypes { get; set; }
+        //Store Ad Types for drop down in view
+        public virtual IEnumerable<AdType> Types { get; set; }
+
         // Set relation one-to-zero-or-one
         public virtual ApplicationUser ApplicationUser { get; set; }
-    }
-
-    public enum AdType
-    {
-        Praca,
-        Zlecenie
-    }
-
-    public enum AdCategory
-    {
-        Budownictwo,
-        IT,
-        Transport,
-        Hotelarstwo,
-        HR,
-        Gastronomia,
     }
 }
