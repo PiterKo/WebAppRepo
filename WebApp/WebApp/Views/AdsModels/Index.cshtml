@@ -7,26 +7,6 @@
 <h2>Index</h2>
 
 <table class="table">
-    @*<tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationUser.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShortDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Skills)
-        </th>
-        <th>
-            Wiek
-        </th>
-    </tr>*@
 
 @foreach (var item in Model) {
     <tr>
@@ -47,6 +27,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ApplicationUser.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdTypes.Name)
         </td>
     </tr>
 }

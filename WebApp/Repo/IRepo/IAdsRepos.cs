@@ -10,9 +10,13 @@ namespace Repo.IRepo
     public interface IAdsRepos
     {
         List<AdModel> GetAds();
+
         AdModel GetTypes();
+
         AdModel GetAdByUser(string userId);
+
         AdModel AdModel(AdModel adModel, string userId);
+
         void CreateAd(AdModel adModel);
     }
 }

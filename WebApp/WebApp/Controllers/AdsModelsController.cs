@@ -26,6 +26,7 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
             var adModels = _repos.GetAds();
+
             return View(adModels);
         }
     }
