@@ -5,11 +5,17 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Repo.Models
 {
     public class AdModel
     {
+        public AdModel()
+        {
+            this.AdCategories = new HashSet<AdCategory>();
+        }
+
         [Display(Name = "Id")]
         public int Id { get; set; }
 
@@ -38,9 +44,13 @@ namespace Repo.Models
         public DateTime? AddingDate { get; set; } = DateTime.Now; // Default set is current date.
 
         //First property  Name: Type, Relation: one-to-many
-        public virtual AdType AdTypes { get; set; }
+        public virtual AdType AdType { get; set; }
         //Store Ad Types for drop down in view
         public virtual IEnumerable<AdType> Types { get; set; }
+
+        [Display(Name = "Kategoria ogłoszenia")]
+        public virtual ICollection<AdCategory> AdCategories { get; set; }
+        public virtual ICollection<int> SelectedCategories { get; set; }
 
         // Set relation one-to-zero-or-one
         public virtual ApplicationUser ApplicationUser { get; set; }

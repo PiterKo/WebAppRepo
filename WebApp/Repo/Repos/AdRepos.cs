@@ -26,7 +26,8 @@ namespace Repo.Repos
         {
             AdModel adModel = new AdModel
             {
-                Types = _db.AdTypes.AsNoTracking().ToList()
+                Types = _db.AdType.AsNoTracking().ToList(),
+                AdCategories = _db.AdCategories.AsNoTracking().ToList()
             };
 
             return adModel;
@@ -34,9 +35,8 @@ namespace Repo.Repos
 
         public AdModel GetAdByUser(string userId)
         {
-            var user = _db.ApplicationUsers.Find(userId);
             var ad = _db.Ads
-                .Where(s => s.ApplicationUser.Id == user.Id)
+                .Where(s => s.ApplicationUser.Id == userId)
                 .FirstOrDefault<AdModel>();
 
             return ad;
@@ -45,10 +45,15 @@ namespace Repo.Repos
         public AdModel AdModel(AdModel adModel, string userId)
         {
             adModel.ApplicationUser = _db.ApplicationUsers.Find(userId);
-            adModel.AdTypes = _db.AdTypes.Find(adModel.AdTypes.Id);
 
+            adModel.AdType = _db.AdType.Find(adModel.AdType.Id);
+
+            foreach (var categoryId in adModel.SelectedCategories.ToList())
+            {
+                adModel.AdCategories.Add(_db.AdCategories.Find(categoryId));
+            }
+           
             return adModel;
-
         }
 
         public void CreateAd(AdModel adModel)

@@ -12,7 +12,8 @@ namespace Repo.IRepo
     {
         DbSet<ApplicationUser> ApplicationUsers { get; set; }
         DbSet<AdModel> Ads { get; set; }
-        DbSet<AdType> AdTypes { get; set; }
+        DbSet<AdType> AdType { get; set; }
+        DbSet<AdCategory> AdCategories { get; set; }
 
         int SaveChanges();
         Database Database { get; }

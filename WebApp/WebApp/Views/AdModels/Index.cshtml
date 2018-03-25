@@ -1,6 +1,7 @@
 ﻿@using Repo.Models
 @using Repo.Extensions
 @using Microsoft.AspNet.Identity
+@using MvcCheckBoxList.Model
 @model Repo.Models.AdModel
 
 @{
@@ -22,11 +23,17 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AdTypes.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AdType.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.AdTypes.Id, new SelectList(Model.Types, "Id", "Name"), new { @class = "form-control" })
-
-                @Html.ValidationMessageFor(model => model.AdTypes, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(m => m.AdType.Id, new SelectList(Model.Types, "Id", "Name"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AdType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdCategories, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 checkbox">
+                @Html.CheckBoxListFor(model => model.SelectedCategories, model => model.AdCategories, model => model.Id, model => model.Name, model => model.IsSelected, Position.Vertical)
             </div>
         </div>
 

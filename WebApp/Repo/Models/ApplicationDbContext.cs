@@ -23,7 +23,8 @@ namespace Repo.Models
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<AdModel> Ads { get; set; }
-        public DbSet<AdType> AdTypes { get; set; }
+        public DbSet<AdType> AdType { get; set; }
+        public DbSet<AdCategory> AdCategories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -41,8 +42,18 @@ namespace Repo.Models
                 .WithRequired(ad => ad.ApplicationUser);
 
             modelBuilder.Entity<AdModel>()
-                .HasRequired<AdType>(s => s.AdTypes)
+                .HasRequired<AdType>(s => s.AdType)
                 .WithMany(g => g.AdModels);
+
+            modelBuilder.Entity<AdModel>()
+                .HasMany<AdCategory>(s => s.AdCategories)
+                .WithMany(c => c.AdModels)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("AdId");
+                    cs.MapRightKey("CategoryId");
+                    cs.ToTable("Ad_Category");
+                });
         }
     }
 }

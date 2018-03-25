@@ -42,7 +42,7 @@ namespace WebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Index([Bind(Include = "ImagePath,Area,ShortDescription,Skills,AdTypes")] AdModel adModel)
+        public ActionResult Index([Bind(Include = "ImagePath,Area,ShortDescription,Skills,AdType,AdCategories,SelectedCategories")] AdModel adModel)
         {
             adModel = _repos.AdModel(adModel, User.Identity.GetUserId());
 

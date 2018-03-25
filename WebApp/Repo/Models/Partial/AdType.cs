@@ -8,10 +8,10 @@ namespace Repo.Models.Partial
 {
     public class AdType
     {
-        [Display(Name = "Id kategorii")]
+        [Display(Name = "Id typu")]
         public int Id { get; set; }
 
-        [Display(Name = "Nazwa kategorii")]
+        [Display(Name = "Typ ogłoszenia")]
         public string Name { get; set; }
 
         public virtual ICollection<AdModel> AdModels { get; set; }
