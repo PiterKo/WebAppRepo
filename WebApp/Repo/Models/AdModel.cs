@@ -22,8 +22,8 @@ namespace Repo.Models
         [Display(Name = "Status")]
         public bool Active { get; set; } = true; // Default set is true.
 
-        [Display(Name = "Path")]
-        public string ImagePath { get; set; }
+        [Display(Name = "Dodaj zdjęcie")]
+        public string Image { get; set; }
 
         [Required]
         [Display(Name = "Obszar")]
@@ -43,13 +43,15 @@ namespace Repo.Models
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? AddingDate { get; set; } = DateTime.Now; // Default set is current date.
 
-        //First property  Name: Type, Relation: one-to-many
+        // Seting relation one-to-one with Type
         public virtual AdType AdType { get; set; }
         //Store Ad Types for drop down in view
         public virtual IEnumerable<AdType> Types { get; set; }
 
+        // Seting relation many-to-many with Categories
         [Display(Name = "Kategoria ogłoszenia")]
         public virtual ICollection<AdCategory> AdCategories { get; set; }
+        // Store selected values
         public virtual ICollection<int> SelectedCategories { get; set; }
 
         // Set relation one-to-zero-or-one

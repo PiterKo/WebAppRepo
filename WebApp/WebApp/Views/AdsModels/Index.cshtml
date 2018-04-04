@@ -10,26 +10,35 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+        <td style="width:100px;">
+            <img src="@Html.DisplayFor(modelItem => item.Image)" alt="@Html.DisplayFor(modelItem => item.ApplicationUser.Id)" class="img-circle" width="100" height="100">
+        </td>
+        <td style="width:200px;">
+            <table>
+                <tr>
+                    <td>
+                        <h3 style="margin-top:0px;"><b>@Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)</b>, @Html.DisplayFor(modelItem => item.ApplicationUser.Age)</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.City)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AdType.Name)
+                    </td>
+                </tr>
+            </table>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.City)
+            <h5 style="margin-top:6px;">@Html.LabelFor(model => item.ShortDescription)</h5>
+            <p>@Html.DisplayFor(modelItem => item.ShortDescription)</p>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImagePath)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShortDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Skills)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdType.Name)
+            <h5 style="margin-top:6px;">@Html.LabelFor(model => item.Skills)</h5>
+            <p>@Html.DisplayFor(modelItem => item.Skills)</p>
         </td>
     </tr>
 }

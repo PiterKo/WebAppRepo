@@ -15,19 +15,19 @@ namespace WebApp.Controllers
 {
     public class AdsModelsController : Controller
     {
-        private readonly IAdsRepos _repos;
+        private readonly IGetForView _getForView;
 
-        public AdsModelsController(IAdsRepos repos)
+        public AdsModelsController(IGetForView getForView)
         {
-            _repos = repos;
+            _getForView = getForView;
         }
 
         // GET: Ads
         public ActionResult Index()
         {
-            var adModels = _repos.GetAds();
+            var ads = _getForView.Ads();
 
-            return View(adModels);
+            return View(ads);
         }
     }
 }

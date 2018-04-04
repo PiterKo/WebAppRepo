@@ -20,8 +20,10 @@ namespace Repo.Models.Partial
         [Display(Name = "Nazwa Kategorii")]
         public string Name { get; set; }
 
+        [Display(Name = "Zaznaczone?")]
         public bool IsSelected { get; set; } = false;
 
+        // Seting configuration many-to-many with Ad
         public virtual ICollection<AdModel> AdModels {get;set;}
     }
 }

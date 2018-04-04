@@ -51,7 +51,8 @@ namespace WebApp
 
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
-            container.RegisterType<IAdsRepos, AdRepos>(new PerRequestLifetimeManager());
+            container.RegisterType<IAd, Ad>(new PerRequestLifetimeManager());
+            container.RegisterType<IGetForView, GetForView>(new PerRequestLifetimeManager());
             container.RegisterType<IApplicationContext, ApplicationDbContext>(new PerRequestLifetimeManager());
         }
     }
